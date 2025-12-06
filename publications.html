@@ -1,1 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publications | Chang Hasheminezhad-Li</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <!-- 引入 Noto Serif TC 以更好地显示繁体中文 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
 
+    <style>
+        :root {
+            --bg-color: #f9f9f7; 
+            --text-color: #2c2c2c; 
+            --accent-color: #8a3324; 
+            --card-bg: #ffffff;
+            --meta-color: #666;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Lato', sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .top-nav {
+            width: 100%;
+            padding: 2rem 0;
+            text-align: center;
+            background-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.05rem;
+            margin: 0 15px;
+            border-bottom: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+        }
+
+        .container {
+            max-width: 800px;
+            width: 90%;
+            padding-bottom: 60px;
+        }
+
+        h1.section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            text-align: left;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        .pub-card {
+            display: block;
+            background-color: var(--card-bg);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--accent-color);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            text-decoration: none;
+            color: var(--text-color);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+        }
+
+        .pub-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.08);
+        }
+
+        .pub-card.static {
+            cursor: default;
+        }
+        .pub-card.static:hover {
+            transform: none;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+
+        .pub-meta {
+            font-size: 0.85rem;
+            color: var(--meta-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .pub-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 0 0 0.2rem 0; /* 减小下方间距，以便紧接中文标题 */
+            line-height: 1.3;
+        }
+
+        /* 新增：繁体中文标题样式 */
+        .pub-title-zh {
+            font-family: 'Noto Serif TC', serif; /* 使用繁体中文字体 */
+            font-size: 1.15rem;
+            font-weight: 400;
+            margin: 0 0 0.5rem 0;
+            color: #444;
+            line-height: 1.4;
+        }
+
+        /* 新增：语言标记样式 */
+        .lang-tag {
+            font-size: 0.85rem;
+            color: #777;
+            font-style: italic;
+            font-weight: 400;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .pub-journal {
+            font-style: italic;
+            color: var(--accent-color);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        details {
+            margin-top: 1rem;
+            border-top: 1px dashed #eee;
+            padding-top: 1rem;
+        }
+
+        summary {
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: #888;
+            font-weight: 700;
+            outline: none;
+            list-style: none;
+        }
+        
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        summary::after {
+            content: "+ Read Abstract";
+        }
+
+        details[open] summary::after {
+            content: "- Close Abstract";
+        }
+
+        .abstract-text {
+            font-size: 0.95rem;
+            color: #555;
+            font-weight: 300;
+            margin-top: 10px;
+            text-align: justify;
+        }
+
+        .abstract-text p {
+            margin-bottom: 1rem;
+        }
+        .abstract-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .link-btn {
+            display: inline-block;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+            padding: 5px 15px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .link-btn:hover {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+
+    <nav class="top-nav">
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="publications.html" style="color:var(--accent-color); border-bottom:1px solid var(--accent-color);">Publications</a>
+            <a href="#">Projects</a>
+            <a href="#">Gallery</a>
+            <a href="#">CV</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        
+        <!-- === JOURNAL ARTICLES === -->
+        <h1 class="section-title">Journal Articles</h1>
+
+        <!-- Article 1: Qu Yuan (2024) -->
+        <div class="pub-card">
+            <div class="pub-meta">
+                <span>2024</span>
+                <span>Manuscript</span>
+            </div>
+            <h2 class="pub-title">The Reception of Qu Yuan’s <em>The Lament</em> (Li Sao) in Sino-Korean Literature of the Double Fifth Festival</h2>
+            <!-- 新增中文标题与语言标记 -->
+            <h3 class="pub-title-zh">韓國端午漢文作品與屈騷之關聯研究</h3>
+            <span class="lang-tag">(Written in Traditional Chinese)</span>
+
+            <div class="pub-journal">Manuscript</div>
+            
+            <a href="pdfs/hanguo-2024.pdf" target="_blank" class="link-btn">Download PDF &darr;</a>
+            
+            <details>
+                <summary></summary>
+                <div class="abstract-text">
+                    <p>This thesis systematically explores the intertextual relationship between Sino-Korean literature regarding the Double Fifth Festival and the reception of Qu Yuan’s <em>The Lament</em> (Li Sao) tradition. By examining 127 works by 89 authors ranging from the late Goryeo Dynasty through the Joseon Dynasty to the Japanese Colonial Period, the study contextualizes these literary creations within major historical vicissitudes, such as the Sejo Coup of 1453, the Four Literati Purges, the Japanese Invasions of Korea (1592–1598), and factional strife. The research identifies a pattern where Korean literati utilized the festival not merely for ritualistic celebration but as a medium for political allegory.</p>
+                    
+                    <p>The analysis categorizes the emotional reception of Qu Yuan into three distinct sentiments: loyalty, characterized by adherence to Confucian integrity and patriotism; resentment, manifesting as political critique against slander and unrecognized talent; and solitude, reflecting the existential state of the "solitary awakener" in a turbulent era. Ultimately, the research demonstrates that Korean literati internalized Qu Yuan’s image to articulate their own political aspirations and frustrations, thereby transforming festive poetry into a vehicle for profound self-expression and national consciousness.</p>
+                </div>
+            </details>
+        </div>
+
+        <!-- Article 2: Herland (2022) -->
+        <div class="pub-card">
+            <div class="pub-meta">
+                <span>Oct 2022</span>
+                <span>Journal Article</span>
+            </div>
+            <h2 class="pub-title">Reshaping the Balance: How Gilman Critiques and Constructs a Feminist Utopia in Herland</h2>
+            <div class="pub-journal">Nesir: Edebiyat Araştırmaları Dergisi 3, pp. 75-88</div>
+            
+            <a href="https://dergipark.org.tr/en/download/article-file/5051712" target="_blank" class="link-btn">View Article &rarr;</a>
+
+            <details>
+                <summary></summary>
+                <div class="abstract-text">
+                    <p>Based on the perspective of utopian fiction, this article examines Charlotte Perkins Gilman’s <em>Herland</em> from three critical angles: social systems, gender consciousness, and ecological environment. In terms of social institutions, this article contends that Gilman uses Herland to criticise social Darwinism; in terms of gender consciousness, the article contends that Gilman designs the ideal characteristics of an independent woman by describing the duality of her characters; finally, in terms of the ecological environment, Gilman consciously connects women to Mother Earth, thus completing a critique of the industrial model of patriarchal reality and the problem of environmental protection.</p>
+                    
+                    <p>However, <em>Herland</em> also has some limitations. In some ways, the characterisation of women of purely Aryan descent reflects Gilman’s ethnocentric tendencies. Gilman combines eugenics and feminism, and her sense of racial superiority arises from the interplay of the specific historical circumstances of the time. In any case, as a female utopian novel, its critique of the social reality of the time is profound, and its exploration of an ideal society is positive.</p>
+                </div>
+            </details>
+        </div>
+
+        <!-- Article 3: Kim Si-seup (2020) -->
+        <div class="pub-card">
+            <div class="pub-meta">
+                <span>Jun 2020</span>
+                <span>Journal Article</span>
+            </div>
+            <h2 class="pub-title">Kim Si-seup's Complex of Qu Yuan and ChuCi: Centering on the Idea-image and Acceptance from ChuCi</h2>
+            <!-- 新增中文标题与语言标记 -->
+            <h3 class="pub-title-zh">金時習之屈騷情結——以楚辭意象受容爲中心</h3>
+            <span class="lang-tag">(Written in Traditional Chinese)</span>
+
+            <div class="pub-journal">Journal of Chinese and Korean Studies, Vol. 7</div>
+            
+            <a href="pdfs/kim-siseup-2020.pdf" target="_blank" class="link-btn">Download PDF &darr;</a>
+
+            <details>
+                <summary></summary>
+                <div class="abstract-text">
+                    <p>Since ancient times, China has had frequent cultural interactions with the Korean peninsula. When ChuCi was introduced into the Yi dynasty, it was highly praised by intellectuals. As a paragon to imitate Qu Yuan, Kim Si-seup's acceptance of ChuCi is an essential aspect of ChuCi dissemination and research, and meanwhile, a large number of images related to ChuCi in his literary creation remain to be further studied.</p>
+                    
+                    <p>On the basis of the researches of others, this study found that there are 122 images related to ChuCi in <em>Maewoldangjip</em>. What impressed readers is that the image of "orchid" is mentioned 43 times. These images are classified on the basis of their connotations, which can be divided into images similar to the intensions of ChuCi and images different from the connotations of ChuCi. These 106 images are not only the evidence of Kim Si-seup's personal praise for Qu Yuan and ChuCi, but also the concentrated performance of ChuCi's acceptance in the Joseon dynasty.</p>
+                </div>
+            </details>
+        </div>
+
+
+        <!-- === CONFERENCE PRESENTATIONS === -->
+        <h1 class="section-title">Conference Presentations</h1>
+
+        <!-- Conf 1: Malta (2026) -->
+        <div class="pub-card static">
+            <div class="pub-meta">
+                <span>Feb 2026</span>
+                <span>Malta</span>
+            </div>
+            <h2 class="pub-title">Am I a Voice or a Traitor? Dialogues with Youth from Aggressor States</h2>
+            <div class="pub-journal">Seen and Heard International Conference, University of Malta</div>
+            
+            <a href="https://www.um.edu.mt/events/seenandheardintconf2026/" target="_blank" class="link-btn">Conference Info &rarr;</a>
+
+            <details>
+                <summary></summary>
+                <div class="abstract-text">
+                    <p>This qualitative interview study examines 6 migrant youth from Belarus, China, and Russia currently living in Europe, exploring how young people bearing the moral burden of their homeland’s aggression redefine their moral identity and expressive boundaries, and how they reconstruct national guilt, self-censorship, and political expression.</p>
+
+                    <p>During the recruitment process, all potential participants actively requested anonymous online interviews, expressing strong concerns about the potential impact on personal safety when discussing political topics. This inspired us to update our methodology: employing picturebooks as cultural identity negotiation catalysts. Our selected texts <em>The Enemy</em> (2007), <em>How War Changed Rondo</em> (2015) and <em>War</em> (2021) serve as narrative entry points, enabling participants to explore political and moral questions within the safer framework of literary analysis.</p>
+
+                    <p>Through employing Lysaker & Tonge’s (2013) Relationally Oriented Reading Instruction (RORI), participants connected the picturebooks with their personal experiences in further semi-structured interview discussions, articulating their individual identity negotiation processes. Most participants developed internalised native language shame, avoiding their mother tongues in public spaces whenever possible. Nearly all maintain friendships with peers from opposing sides of the conflict. However, they consciously avoid political discussions, demonstrating a form of protective silence. Additionally, many engage in strategic identity compartmentalisation in digital spaces, presenting different political personas across various platforms. While expressing sympathy for conflict victims, participants also position themselves as victims. Faced with powerful state machinery, some turn to art and literature as safer forms of resistance, with a fragile yet resilient moral agency emerging between silence and open protest.</p>
+
+                    <p>By validating the unique role of picturebooks in breaking through barriers to discussing sensitive topics, this study provides innovative methodological references for qualitative research on high-risk political issues involving adolescents, particularly offering important insights into obtaining authentic data while protecting participant safety.</p>
+                </div>
+            </details>
+        </div>
+
+        <!-- Conf 2: Venice (2025) -->
+        <div class="pub-card static">
+            <div class="pub-meta">
+                <span>Nov 2025</span>
+                <span>Venice, Italy</span>
+            </div>
+            <h2 class="pub-title">The Taste of Authoritarian: How Do Food Spaces Function as Sites of Control and Resistance in Picturebooks?</h2>
+            <div class="pub-journal">Eating Indoors and Outdoors in Children's Literature</div>
+
+            <a href="https://www.unive.it/data/33113/5/107894" target="_blank" class="link-btn">Conference Info &rarr;</a>
+
+            <details>
+                <summary></summary>
+                <div class="abstract-text">
+                    <p>This study examines the transformation of food spaces in children’s literature under authoritarian rule, analysing how sites of food consumption and production become contested political terrain that shapes young protagonists’ daily experiences and identity formation. While food symbolism in children’s literature has received scholarly attention, the spatial dimensions of food culture, specifically how physical locations of eating and food procurement function as sites of political control, remain underexplored.</p>
+
+                    <p>Through examination of three picturebooks depicting childhood under distinct authoritarian regimes, Peter Sís’s <em>The Wall</em> (2007), Antonio Skármeta and Alfonso Ruano’s <em>The Composition</em> (2000), and Na Liu and Andrés Vera Martínez’s <em>Little White Duck</em> (2012), this research explores how oppressive governments infiltrate and reshape the most intimate spaces of daily sustenance. These texts represent geographically and temporally diverse contexts: Communist Czechoslovakia, Pinochet’s Chile, and Mao’s China during the Cultural Revolution.</p>
+
+                    <p>Drawing on Michel de Certeau’s distinction between “strategies” and “tactics” in <em>The Practice of Everyday Life</em> (1984), this study conceptualises authoritarian control over food spaces as systematic strategies while examining child characters’ everyday practices as potential tactics of resistance. However, this theoretical application raises critical questions about children’s capacity for conscious political resistance. The research further interrogates Václav Havel’s notion of “living in truth” (1989), the practice of maintaining independent social life “as if the regime did not exist”, to examine whether such deliberate political resistance is feasible for children whose cognitive and social development remains incomplete. Recent scholarship on food in children’s literature suggests that culinary practices can function as vehicles for cultural identity and resistance beyond mere sustenance (Keeling & Pollard, 2020).</p>
+
+                    <p>The analysis proceeds along four interconnected axes. First, I examine how domestic dining spaces, traditionally sites of family intimacy, become arenas of political tension where conversations are monitored and familial bonds strained. Second, I analyse the transformation of public food venues such as markets and stores into spaces of surveillance, scarcity, and state control. Third, I investigate how food itself becomes politicised, functioning simultaneously as propaganda tool and site of resistance. Finally, I consider how child narrators navigate these transformed landscapes, revealing both their vulnerability to political manipulation and their capacity for subtle acts of defiance.</p>
+                    
+                    <p>By testing the applicability of de Certeau’s theory of everyday practices in childhood contexts and questioning the feasibility of Havel’s living in truth for children, this research seeks to provide new theoretical perspectives for the study of political resistance in children’s literature. Preliminary findings suggest that children’s “tactics” possess unique characteristics that blend instinctive responses with learned resistance behaviours, while their version of living in truth often depends on adult protection and guidance, indicating that traditional adult-centric resistance theories may need to be reexamined and revised within the context of childhood studies.</p>
+                </div>
+            </details>
+        </div>
+
+        <!-- Conf 3: IBBY Korea (2025) -->
+        <div class="pub-card static">
+            <div class="pub-meta">
+                <span>Aug 2025</span>
+                <span>Suwon, South Korea</span>
+            </div>
+            <h2 class="pub-title">The Potential of Post-Apocalyptic Young Adult Novels as a Vehicle for Youth Engagement in Ecological Transformation</h2>
+            <div class="pub-journal">2025 IBBY Asia Pacific Regional Conference</div>
+            
+            <details>
+                <summary></summary>
+                <div class="abstract-text">
+                    <p>The development of the Young Adult novel in terms of the topics it encompasses reached its zenith in the 1970s. <em>The Catcher in the Rye</em> became the key turning point that allowed ‘crisis’ to be encompassed within the themes discussed in YA fiction. And the ever-expanding boundaries of the interpretation of crisis led to post-apocalyptic, as a discussion of the most extreme ecological issues, forming a new sub-genre after its eventual crossover with YA fiction.</p>
+
+                    <p>Some scholars argue that post-apocalyptic YA narratives are a good platform for adolescents‘ ecological engagement, where ecological issues are presented in the form of exaggerated ’catastrophes,‘ so that young people can be alerted to the urgency of real-life crises and take action. However, other critics express negative attitudes, accusing adults of irresponsibly transferring the crisis to the next generation, forcing them to bear the mistakes of their predecessors. Such disagreement demonstrates an interest in what post-apocalyptic YA novels can empower for ecological engagement that has yet to be examined.</p>
+
+                    <p>Three representative works <em>Earth Abides</em>, <em>The Lorax</em> and <em>Alas, Babylon</em> are chosen for this paper, corresponding to three of the most popular, discussed types of disaster: plague, human-made destruction, and nuclear power. Taking the crisis itself as the axis, this paper does a plot segmentation, dividing the text into three phases: ‘introduction’, ‘peak’ and ‘aftermath’ of the crisis. Then, a comparative analysis is conducted, focusing on whether the three works show different tendencies to address the end-of-time.</p>
+
+                    <p>The findings show that the two works employ similar narrative strategies, especially in the early stages of the crisis, by emphasizing the inevitability of the crisis and triggering the readers' fear and sense of responsibility for the ecological destruction. <em>Alas, Babylon</em>, on the other hand, is different. Its focus on the ‘aftermath’ stages is more positive in terms of emotional mobilization, with a more optimistic/functional narrative framework that emphasizes human resilience.</p>
+
+                    <p>Secondly, all three works show the characteristic of prompting readers to act by reinforcing the urgency of the crisis, that is, attempting to alert adolescent readers to the reality through extreme situations. However, there are still differences in the specific expressions: <em>The Lorax</em>'s ‘blaming’ tone towards the next generation is particularly prominent, shifting the ecological failures of adults to impose warnings and a sense of responsibility on the younger generation. This paper worries that this narrative strategy may reinforce the sense of inter-generational inequity in the crisis. Meanwhile, it exposes an underlying negative tendency in post-apocalyptic YA fiction. This concern echoes some scholars' concerns with post-apocalyptic YA narratives, namely, that they may aggravate the psychological burden of the younger generation.</p>
+                </div>
+            </details>
+        </div>
+
+        <!-- Conf 4: London (2022) -->
+        <div class="pub-card static">
+            <div class="pub-meta">
+                <span>Jun 2022</span>
+                <span>London, UK</span>
+            </div>
+            <h2 class="pub-title">The Polarization of the Discourse of the Queer Community in China</h2>
+            <div class="pub-journal">Mind the Gap Conference</div>
+            
+            <details>
+                <summary></summary>
+                <div class="abstract-text">
+                    <p>The queer community remains marginalised in Chinese society due to the influence of traditional culture and ideology. This paper discovers a significant polarisation trend in the discourse of the queer community in Chinese society today through the collation of news reports and the investigation of the survival status of queer on mainstream Chinese social media platforms (Weibo, WeChat, TikTok, etc.).</p>
+
+                    <p>This paper contends that, on the one hand, censorship makes it difficult for the queer community to have a voice. Although the Chinese government has removed homosexuality from the list of “mental illnesses” since 2001, cases of conversion therapy have been reported in recent years. Meanwhile, content about Queer and Pride Month is strictly monitored on the internet. On the other hand, among specific groups on the Internet, queer has become the “clickbait”. There are a lot of queer internet celebrity couples on TikTok and Weibo to get millions of likes; the flourishing of “danmei literature” devoted to gay love; drama adaptations based on queer literature; and even the act of “Ke CP” for celebrities (ship the imaginary love between same-sex celebrities).</p>
+
+                    <p>The survival situation of queer in China has always been strongly influenced by stereotypes, but such stereotypes have contributed to their gaining discourse in disguise on the Internet. The current discourse of the Chinese queer community, according to this paper, is an illusion that does not contribute to its better development.</p>
+                </div>
+            </details>
+        </div>
+
+        <div style="height: 50px;"></div>
+    </div>
+
+</body>
+</html>
