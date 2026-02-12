@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV | Chang Hasheminezhad-Li</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-color: #f9f9f7; 
+            --text-color: #2c2c2c; 
+            --accent-color: #8a3324; 
+            --card-bg: #ffffff;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Lato', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .top-nav {
+            width: 100%;
+            padding: 2rem 0;
+            text-align: center;
+            background-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.05rem;
+            margin: 0 15px;
+            border-bottom: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+        }
+
+        .container {
+            max-width: 1000px;
+            width: 90%;
+            padding-bottom: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .cv-header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 15px;
+        }
+
+        h1.page-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin: 0;
+            color: var(--text-color);
+        }
+
+        /* 下载按钮样式 */
+        .btn-download {
+            background-color: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 10px rgba(138, 51, 36, 0.2);
+        }
+
+        .btn-download:hover {
+            background-color: #6b271b;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(138, 51, 36, 0.3);
+        }
+
+        /* === PDF 预览容器 (Desktop) === */
+        .pdf-viewer-container {
+            width: 100%;
+            height: 80vh; /* 占据屏幕高度的80% */
+            background-color: #eee;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* === 移动端提示卡片 (Mobile Only) === */
+        .mobile-cv-card {
+            display: none; /* 默认隐藏 */
+            background-color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--accent-color);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .mobile-icon {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .mobile-text {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        /* === 响应式控制 === */
+        @media (max-width: 850px) {
+            /* 在平板和手机上隐藏预览框，显示下载卡片 */
+            .pdf-viewer-container {
+                display: none;
+            }
+            .mobile-cv-card {
+                display: block;
+            }
+            .cv-header {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+            .btn-download {
+                width: 100%; /* 手机上按钮全宽 */
+                justify-content: center;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <nav class="top-nav">
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="publications.html">Publications</a>
+            <a href="projects.html">Projects</a>
+            <a href="#">Gallery</a>
+            <a href="cv.html" style="color:var(--accent-color); border-bottom:1px solid var(--accent-color);">CV</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        
+        <div class="cv-header">
+            <h1 class="page-title">Curriculum Vitae</h1>
+            <a href="pdfs/CV_Chang_12.2025.pdf" target="_blank" class="btn-download">
+                <i class="fa-solid fa-download"></i> Download Full CV
+            </a>
+        </div>
+
+        <div class="pdf-viewer-container">
+            <iframe src="pdfs/CV_Chang_12.2025.pdf#view=FitH" title="CV Viewer">
+                <p>Your browser does not support PDFs. <a href="pdfs/CV_Chang_12.2025.pdf">Download the PDF</a>.</p>
+            </iframe>
+        </div>
+
+        <div class="mobile-cv-card">
+            <div class="mobile-icon">
+                <i class="fa-regular fa-file-pdf"></i>
+            </div>
+            <h3 style="font-family:'Playfair Display', serif; margin-top:0;">View Curriculum Vitae</h3>
+            <p class="mobile-text">
+                For the best reading experience on mobile devices, please download the PDF directly.
+            </p>
+            <a href="pdfs/CV_Chang_12.2025.pdf" target="_blank" class="btn-download">
+                Download PDF
+            </a>
+        </div>
+
+        <div style="height: 50px;"></div>
+    </div>
+
+</body>
+</html>
