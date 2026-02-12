@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | Chang Hasheminezhad-Li</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-color: #f9f9f7; 
+            --text-color: #2c2c2c; 
+            --accent-color: #8a3324; 
+            --card-bg: #ffffff;
+            --meta-color: #666;
+            --tag-bg: #f0f0f0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Lato', sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .top-nav {
+            width: 100%;
+            padding: 2rem 0;
+            text-align: center;
+            background-color: transparent;
+            margin-bottom: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.05rem;
+            margin: 0 15px;
+            border-bottom: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+        }
+
+        .container {
+            max-width: 900px; /* 项目页稍窄一点，增强阅读聚焦 */
+            width: 90%;
+            padding-bottom: 60px;
+        }
+
+        h1.page-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            text-align: left;
+            margin-bottom: 2.5rem;
+            color: var(--text-color);
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 15px;
+        }
+
+        /* === 项目卡片样式 === */
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: 8px; /* 轻微圆角 */
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.04);
+            border-top: 5px solid var(--accent-color); /* 顶部强调色 */
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.08);
+        }
+
+        .project-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .project-role {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent-color);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .project-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin: 0.5rem 0;
+            color: #1a1a1a;
+            line-height: 1.3;
+        }
+
+        .funding-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: #555;
+            background-color: var(--tag-bg);
+            padding: 8px 15px;
+            border-radius: 4px;
+            margin-top: 1rem;
+            width: fit-content;
+        }
+
+        .funding-icon {
+            color: var(--accent-color);
+        }
+
+        .project-content {
+            font-size: 1rem;
+            color: #444;
+            margin-bottom: 2rem;
+            text-align: justify;
+        }
+
+        .project-core {
+            margin-bottom: 1.5rem;
+        }
+        
+        .core-label {
+            font-weight: 700;
+            color: var(--text-color);
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* 按钮组 */
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: white;
+            border: 1px solid var(--accent-color);
+        }
+
+        .btn-primary:hover {
+            background-color: #6b271b;
+            border-color: #6b271b;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .btn-text {
+            color: #666;
+            border: 1px solid #ccc;
+        }
+        .btn-text:hover {
+            border-color: #444;
+            color: #333;
+        }
+
+        @media (max-width: 768px) {
+            .project-card {
+                padding: 1.5rem;
+            }
+            .project-title {
+                font-size: 1.5rem;
+            }
+            .action-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="top-nav">
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="publications.html">Publications</a>
+            <a href="projects.html" style="color:var(--accent-color); border-bottom:1px solid var(--accent-color);">Projects</a>
+            <a href="#">Gallery</a>
+            <a href="#">CV</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 class="page-title">Research Projects</h1>
+
+        <div class="project-card">
+            <div class="project-header">
+                <span class="project-role">Project Leader & Co-Designer</span>
+                <h2 class="project-title">P.A.G.E.S: Picture books As Gateways to European Society</h2>
+                
+                <div class="funding-info">
+                    <i class="fa-solid fa-award funding-icon"></i>
+                    <span>Funded by <strong>Arqus European University Alliance</strong> (Student Co-designed Projects 2025)</span>
+                </div>
+            </div>
+
+            <div class="project-content">
+                <div class="project-core">
+                    <p><span class="core-label">Core Focus:</span> Cross-cultural Dialogue, Visual Literacy, Social Inclusion</p>
+                </div>
+                
+                <p>
+                    P.A.G.E.S. leverages picture books as a powerful "universal language" to transcend linguistic barriers and foster deeper understanding of major societal issues—such as human rights, gender diversity, and war trauma—from a European perspective. 
+                </p>
+                <p>
+                    Aligned with the EU 2030 Agenda, this project orchestrates a series of interactive workshops at the <strong>University of Padua</strong> and the <strong>University of Wrocław</strong>. It redefines picture books not merely as children's literature, but as sophisticated tools for university-level critical thinking, enabling students from diverse backgrounds to "read" visual narratives as sites of cultural negotiation and healing.
+                </p>
+            </div>
+
+            <div class="action-buttons">
+                <a href="https://arqus-alliance.eu/news/re-imagining-europe-space-for-cross-cultural-dialogue/" target="_blank" class="btn btn-primary">
+                    <i class="fa-solid fa-users"></i> View My Workshop
+                </a>
+                <a href="https://arqus-alliance.eu/news/results-arqus-student-co-designed-projects-2025/" target="_blank" class="btn btn-outline">
+                    <i class="fa-solid fa-globe"></i> Arqus Announcement
+                </a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-header">
+                <span class="project-role">Core Research Team Member</span>
+                <h2 class="project-title">BIBI: Biographies and Biofiction of Childhood</h2>
+                <div class="funding-info">
+                    <i class="fa-solid fa-landmark funding-icon"></i>
+                    <span>Funded by <strong>Italian Presidency of the Council of Ministers</strong> (Dept. for Equal Opportunities)</span>
+                </div>
+            </div>
+
+            <div class="project-content">
+                <div class="project-core">
+                    <p><span class="core-label">Core Focus:</span> Gender Respect, Children's Biography, Educational Intervention</p>
+                </div>
+
+                <p>
+                    The BIBI project (<em>Biografie e Bioficion d'Infanzia</em>) is a national research and educational intervention programme designed to promote gender respect and combat stereotypes through the medium of children's biography and biofiction.
+                </p>
+                <p>
+                    As a core team member, I contribute to the theoretical analysis of biographical narratives and the development of educational frameworks that help young readers engage with diverse life stories. The project investigates how visual and textual representations of lives can empower children to envision alternative futures and understand the complexity of gender identity beyond traditional binaries.
+                </p>
+            </div>
+
+            <div class="action-buttons">
+                <a href="https://www.childrensliterature-unipd.it/progetto-bibi/" target="_blank" class="btn btn-primary">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i> Visit Official Website
+                </a>
+                <a href="pdfs/BIBI-project-intro.pdf" target="_blank" class="btn btn-outline">
+                    <i class="fa-regular fa-file-pdf"></i> Download Project Intro (EN)
+                </a>
+            </div>
+        </div>
+
+        <div style="height: 50px;"></div>
+    </div>
+
+</body>
+</html>
