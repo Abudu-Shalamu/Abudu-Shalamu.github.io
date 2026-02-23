@@ -57,20 +57,18 @@
         }
 
         .container {
-            max-width: 1200px; /* 加宽容器以容纳双栏 */
+            max-width: 1200px; 
             width: 92%;
             padding-bottom: 60px;
         }
 
-        /* === 新增：双栏布局 Grid 系统 === */
         .pub-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr; /* 两列等宽 */
-            gap: 3rem; /* 列间距 */
+            grid-template-columns: 1fr 1fr; 
+            gap: 3rem; 
             align-items: start;
         }
 
-        /* 响应式：手机端变回单列 */
         @media (max-width: 900px) {
             .pub-grid {
                 grid-template-columns: 1fr;
@@ -78,10 +76,9 @@
             }
         }
 
-        /* 标题区域样式调整 */
         .section-header-wrapper {
             display: flex;
-            align-items: baseline; /* 文字底部对齐 */
+            align-items: baseline; 
             justify-content: space-between;
             border-bottom: 1px solid #ddd;
             margin-bottom: 1.5rem;
@@ -97,7 +94,6 @@
             color: var(--text-color);
         }
 
-        /* Google Scholar Link 样式 */
         .scholar-link {
             font-size: 0.9rem;
             color: #4d4d4d;
@@ -109,7 +105,7 @@
             font-weight: 700;
         }
         .scholar-link:hover {
-            color: #4285F4; /* Google Blue */
+            color: #4285F4; 
         }
 
         .pub-card {
@@ -250,9 +246,7 @@
             <a href="index.html">Home</a>
             <a href="about.html">About</a>
             <a href="publications.html" style="color:var(--accent-color); border-bottom:1px solid var(--accent-color);">Publications</a>
-            <a href="#">Projects</a>
-            <a href="#">Gallery</a>
-            <a href="#">CV</a>
+            <a href="projects.html">Projects</a>
         </div>
     </nav>
 
@@ -342,7 +336,9 @@
                     <a href="pdfs/kim-siseup-2020.pdf" target="_blank" class="link-btn">Download PDF &darr;</a>
                 </div>
 
-            </div> <div class="column-presentations">
+            </div>
+
+            <div class="column-presentations">
                 
                 <div class="section-header-wrapper">
                     <h1 class="section-title">Conference Presentations</h1>
@@ -402,7 +398,9 @@
                     <div class="pub-journal">Mind the Gap Conference</div>
                 </div>
 
-            </div> </div> <div style="height: 50px;"></div>
+            </div>
+        </div>
+        <div style="height: 50px;"></div>
     </div>
 
 </body>
