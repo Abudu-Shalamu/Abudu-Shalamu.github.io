@@ -10,7 +10,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 
     <style>
-        /* CSS 样式设计 */
         :root {
             --bg-color: #f9f9f7; 
             --text-color: #2c2c2c; 
@@ -26,17 +25,16 @@
             margin: 0;
             padding: 0;
             display: flex;
-            flex-direction: column; /* 改为垂直布局以支持顶部导航 */
+            flex-direction: column;
             align-items: center;
             min-height: 100vh;
         }
 
-        /* 顶部导航栏样式 - 新增 */
         .top-nav {
             width: 100%;
             padding: 2rem 0;
             text-align: center;
-            background-color: transparent; /* 透明背景 */
+            background-color: transparent;
             margin-bottom: 2rem;
         }
 
@@ -45,7 +43,7 @@
             color: var(--text-color);
             font-family: 'Playfair Display', serif;
             font-size: 1.05rem;
-            margin: 0 15px; /* 链接间距 */
+            margin: 0 15px;
             border-bottom: 1px solid transparent;
             transition: all 0.3s ease;
         }
@@ -57,14 +55,14 @@
 
         .container {
             max-width: 800px;
-            padding: 0 40px 40px 40px; /* 顶部padding减小，因为有导航了 */
+            padding: 0 40px 40px 40px;
             text-align: center;
-            margin-top: 2rem; /* 整体下移一点 */
+            margin-top: 2rem;
         }
 
         h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 3.2rem; /* 稍微加大一点 */
+            font-size: 3.2rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
             letter-spacing: 1px;
@@ -73,11 +71,11 @@
 
         .subtitle {
             font-family: 'Playfair Display', serif;
-            font-size: 1.1rem; /* 字体稍微调小显精致 */
+            font-size: 1.1rem;
             color: var(--accent-color);
             font-style: italic;
             margin-bottom: 2rem;
-            max-width: 700px; /* 限制宽度防止太长 */
+            max-width: 700px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -96,23 +94,22 @@
             max-width: 650px;
             margin-left: auto;
             margin-right: auto;
-            text-align: justify; /* 两端对齐让大段文字更好看 */
-            text-align-last: center; /* 最后一行居中 */
+            text-align: justify;
+            text-align-last: center;
         }
 
         .contact-info {
             margin-top: 4rem;
             font-size: 0.9rem;
             color: #777;
-            border-top: 1px solid #eee; /* 加个淡淡的顶部分割线 */
+            border-top: 1px solid #eee;
             padding-top: 2rem;
         }
 
-        /* 移动端适配 */
         @media (max-width: 600px) {
             h1 { font-size: 2.2rem; }
             .container { padding: 20px; }
-            .nav-links a { display: block; margin: 10px 0; } /* 手机上导航竖排 */
+            .nav-links a { display: block; margin: 10px 0; }
         }
     </style>
 </head>
@@ -124,8 +121,6 @@
             <a href="about.html">About</a>
             <a href="publications.html">Publications</a>
             <a href="projects.html">Projects</a> 
-            <a href="#">Gallery</a>
-            <a href="cv.html">CV</a>
         </div>
     </nav>
 
