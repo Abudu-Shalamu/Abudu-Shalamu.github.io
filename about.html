@@ -5,13 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Me | Chang Hasheminezhad-Li</title>
     
-    <!-- 引入Google Fonts (保持与主页一致) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 
     <style>
-        /* 复用主页的基础样式，保持视觉一致性 */
         :root {
             --bg-color: #f9f9f7; 
             --text-color: #2c2c2c; 
@@ -32,7 +30,6 @@
             min-height: 100vh;
         }
 
-        /* 导航栏样式 */
         .top-nav {
             width: 100%;
             padding: 2rem 0;
@@ -56,11 +53,10 @@
             border-bottom: 1px solid var(--accent-color);
         }
 
-        /* 内容容器 */
         .container {
-            max-width: 700px; /* 文字部分窄一点，更适合阅读 */
+            max-width: 700px;
             padding: 0 40px 60px 40px;
-            text-align: left; /* 正文左对齐 */
+            text-align: left;
         }
 
         h1 {
@@ -78,7 +74,6 @@
             text-align: justify;
         }
 
-        /* 超链接样式 */
         a.text-link {
             color: var(--accent-color);
             text-decoration: none;
@@ -90,7 +85,6 @@
             background-color: rgba(138, 51, 36, 0.1);
         }
 
-        /* 图片样式 */
         figure {
             margin: 2.5rem 0;
             text-align: center;
@@ -100,8 +94,8 @@
             max-width: 100%;
             height: auto;
             border-radius: 4px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* 给图片加一点阴影 */
-            filter: grayscale(10%); /* 稍微加一点滤镜，显得更有质感 */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            filter: grayscale(10%);
             transition: filter 0.3s ease;
         }
 
@@ -117,7 +111,6 @@
             margin-top: 10px;
         }
 
-        /* 名字解释的小框 */
         .name-note {
             background-color: #f0f0ed;
             padding: 15px;
@@ -130,82 +123,63 @@
 </head>
 <body>
 
-    <!-- 导航栏 -->
     <nav class="top-nav">
         <div class="nav-links">
             <a href="index.html">Home</a>
-            <a href="about.html" style="color:var(--accent-color); border-bottom:1px solid var(--accent-color);">About</a> <!-- 当前页面高亮 -->
+            <a href="about.html" style="color:var(--accent-color); border-bottom:1px solid var(--accent-color);">About</a>
             <a href="publications.html">Publications</a>
-            <a href="#">Projects</a>
-            <a href="#">Gallery</a>
-            <a href="#">CV</a>
+            <a href="projects.html">Projects</a>
         </div>
     </nav>
 
     <div class="container">
         <h1>My Journey</h1>
 
-        <!-- 名字解释 -->
         <div class="name-note">
             You can call me <strong>Chang Hasheminezhad-Li</strong>, or simply <strong>Chang Li</strong>. The former is my name after marriage, but I am technically still in the process of legalization. You know, the wheels of bureaucracy turn slowly.
         </div>
 
-        <!-- 第一段：出生与早期教育 -->
         <p>
-            I was born in the final year of the last century in <a href="https://en.wikipedia.org/wiki/Suzhou" class="text-link" target="_blank">Suzhou</a>, China—a place often romanticized as the "Venice of the East." Of course, after moving to Italy for my PhD and visiting the actual Venice, I realized the resemblance is... let's say, metaphorical at best.
+            I was born in the final year of the last century in <a href="https://en.wikipedia.org/wiki/Suzhou" class="text-link" target="_blank">Suzhou</a>, China—a place often romanticized as the "Venice of the East." As a member of the final generation born under the <strong><a href="https://en.wikipedia.org/wiki/One-child_policy" class="text-link" target="_blank">One-child policy</a></strong>, I carry a distinct perspective on family dynamics. This socio-political backdrop means I grew up without the intrinsic concepts of "sharing" or "sibling cooperation" that dominate many childhood narratives. This unique upbringing has profoundly influenced my critical lens and emotional reception of children’s literature, allowing me to question structures of agency and collectivism from an outsider's perspective.
         </p>
         <p>
             I have always been drawn to literature. My friends and parents often teased me, saying I failed to meet the stereotype of the "Asian student" because I was utterly hopeless at science. I still vividly remember high school: while I could effortlessly score above 90 in Politics and History, my record in Chemistry was a triumphant 23 out of 100.
         </p>
 
-        <!-- 图片 1 -->
         <figure>
-            <!-- 请确保您上传的图片名为 photo1.jpg 并放在 images 文件夹里 -->
             <img src="image/photo1.jpg" alt="Early days in Suzhou" onerror="this.style.display='none'">
-            <figcaption>A snapshot from the early days with my parents (before I knew about Chemistry scores).</figcaption>
+            <figcaption>A snapshot from the early days (before I knew about Chemistry scores).</figcaption>
         </figure>
 
-        <!-- 第二段：本科 -->
         <p>
             During my undergraduate studies, I chose <strong>Asian Language and Literature</strong> as my major, focusing primarily on the intersection of Korean literature and Sinology. I was particularly fascinated by the reception of <a href="https://en.wikipedia.org/wiki/Chu_Ci" class="text-link" target="_blank"><em>Chu Ci</em> (The Songs of Chu)</a> in the Korean Peninsula, especially during the Joseon Dynasty. It is a captivating anthology of romantic and fantastic imagination, filled with shamans and spirits.
         </p>
 
-        <!-- 第三段：硕士（格拉斯哥 & Erasmus） -->
         <p>
             Following that, I moved to Glasgow to pursue a Master's in <a href="https://fantasy.glasgow.ac.uk/" class="text-link" target="_blank">Fantasy Literature</a>. At the time, I focused on the concept of <em>Xianxia</em> in Chinese fantasy and how it differs ontologically from "Magic" in European traditions. Gradually, my interest shifted towards world-building in High Fantasy, particularly in Young Adult literature.
         </p>
 
-        <!-- 图片 2 -->
         <figure>
             <img src="image/photo2.jpg" alt="University days in Glasgow" onerror="this.style.display='none'">
-            <figcaption>exploring the fantastic worlds in Glasgow.</figcaption>
+            <figcaption>Exploring the fantastic worlds in Glasgow.</figcaption>
         </figure>
 
         <p>
-            After graduation, I had the opportunity to join the Erasmus Mundus programme <a href="https://www.gla.ac.uk/postgraduate/erasmusmundus/clmc/" class="text-link" target="_blank">CLMC (Children's Literature, Media and Culture)</a>. Of course, that specific acronym is now history; they have since "evolved" into <a href="https://www.gla.ac.uk/postgraduate/erasmusmundus/clmce/" class="text-link" target="_blank">CLMCE</a>. 
-        </p>
-        <p>
-            During those two years, I bounced between Scotland, Denmark, and Poland. It was an exhausting and anxious time—visas are a perpetual headache for a non-EU citizen. However, amidst the chaos, I developed a deeper interest in post-apocalyptic narratives. My thesis explored the construction of post-apocalyptic worlds in <em>The Hunger Games</em> and other works.
+            After graduation, I joined the Erasmus Mundus programme <a href="https://www.gla.ac.uk/postgraduate/erasmusmundus/clmc/" class="text-link" target="_blank">CLMC (Children's Literature, Media and Culture)</a>. This journey allowed me to bounce between Scotland, Denmark, and Poland. It was an exhausting and anxious time—visas are a perpetual headache for a non-EU citizen. However, amidst the chaos, I developed a deeper interest in post-apocalyptic narratives. My thesis explored the construction of post-apocalyptic worlds in <em>The Hunger Games</em> and other contemporary works.
         </p>
 
-        <!-- 图片 3 -->
         <figure>
             <img src="image/photo3.jpg" alt="Erasmus journey" onerror="this.style.display='none'">
             <figcaption>Moments from the road between Scotland, Denmark, and Poland.</figcaption>
         </figure>
 
-        <!-- 第四段：现状与生活 -->
         <p>
-            While studying in Poland, I met my wife, Ms. Sofia. I had originally planned to stay in Poland to find work after graduation. However, luck intervened, and I received an offer to move to the <strong>University of Padova</strong> to pursue my doctoral research under the supervision of <a href="https://www.unipd.it/en/contatti/rubrica/?detail=Y&ruolo=1&checkout=cerca&persona=CAMPAGNARO&key=4075EDA7D2B64BB3B05541FD3977A7BE" class="text-link" target="_blank">Prof. Marnie Campagnaro</a>.
+            While studying in Poland, I met my wife, Ms. Sofia. I had originally planned to stay in Poland, but luck intervened, and I received an offer to move to the <strong>University of Padova</strong> to pursue my doctoral research under the supervision of <a href="https://www.unipd.it/en/contatti/rubrica/?detail=Y&ruolo=1&checkout=cerca&persona=CAMPAGNARO&key=4075EDA7D2B64BB3B05541FD3977A7BE" class="text-link" target="_blank">Prof. Marnie Campagnaro</a>.
         </p>
         <p>
-            Now, I am here in Padova, taking it one day at a time. 
-        </p>
-        <p>
-            If you are interested, feel free to explore the other sections in the navigation bar to learn more about my work.
+            Now, I am here in Padova, taking it one day at a time, exploring the multimodal ways in which we navigate the uncertainties of our world.
         </p>
 
-        <!-- 底部留白 -->
         <div style="height: 50px;"></div>
     </div>
 
