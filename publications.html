@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publications | Chang Hasheminezhad-Li</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --black: #000000;
+            --white: #ffffff;
+            --gray-mid: #e8e8e4;
+            --gray-soft: #f7f7f5;
+            --gray-text: #888880;
+            --font-sans: 'Inter', 'SF Pro Display', system-ui, helvetica, sans-serif;
+            --font-mono: 'SF Mono', 'Menlo', monospace;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--white);
+            color: var(--black);
+            font-family: var(--font-sans);
+            font-feature-settings: "kern";
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.45;
+        }
+
+        /* ── Nav ── */
+        .top-nav {
+            position: sticky; top: 0; z-index: 100;
+            width: 100%; background: var(--white);
+            border-bottom: 1px solid var(--gray-mid);
+            display: flex; align-items: center;
+            justify-content: space-between;
+            padding: 0 48px; height: 56px;
+        }
+
+        .nav-logo {
+            font-size: 15px; font-weight: 600;
+            letter-spacing: -0.26px; color: var(--black);
+            text-decoration: none;
+        }
+
+        .nav-links { display: flex; align-items: center; gap: 4px; }
+
+        .nav-links a {
+            text-decoration: none; color: var(--black);
+            font-size: 15px; font-weight: 400;
+            letter-spacing: -0.14px; padding: 6px 14px;
+            border-radius: 50px; transition: background 0.15s ease;
+        }
+
+        .nav-links a:hover { background: rgba(0,0,0,0.06); }
+        .nav-links a.active { background: var(--black); color: var(--white); }
+        a:focus-visible { outline: 2px dashed var(--black); outline-offset: 3px; }
+
+        /* ── Page Header ── */
+        .page-header {
+            padding: 80px 48px 64px;
+            max-width: 1200px; margin: 0 auto;
+            border-bottom: 1px solid var(--gray-mid);
+            display: flex; align-items: flex-end;
+            justify-content: space-between; gap: 32px;
+        }
+
+        .page-header-mono {
+            font-family: var(--font-mono);
+            font-size: 11px; font-weight: 400;
+            letter-spacing: 0.6px; text-transform: uppercase;
+            color: var(--gray-text); margin-bottom: 20px;
+        }
+
+        .page-header h1 {
+            font-size: clamp(40px, 6vw, 72px);
+            font-weight: 300; line-height: 1.00;
+            letter-spacing: -2px; color: var(--black);
+        }
+
+        .page-header h1 em { font-style: normal; font-weight: 500; }
+
+        .scholar-link {
+            display: inline-flex; align-items: center; gap: 8px;
+            text-decoration: none; font-size: 13px; font-weight: 400;
+            letter-spacing: -0.1px; color: var(--black);
+            border: 1.5px solid var(--gray-mid); border-radius: 50px;
+            padding: 8px 18px; white-space: nowrap; flex-shrink: 0;
+            transition: border-color 0.15s ease;
+        }
+
+        .scholar-link:hover { border-color: var(--black); }
+
+        /* ── Filter Bar ── */
+        .filter-bar {
+            max-width: 1200px; margin: 0 auto;
+            padding: 24px 48px;
+            border-bottom: 1px solid var(--gray-mid);
+            display: flex; align-items: center;
+            gap: 12px; flex-wrap: wrap;
+        }
+
+        .filter-label {
+            font-family: var(--font-mono);
+            font-size: 10px; font-weight: 400;
+            letter-spacing: 0.6px; text-transform: uppercase;
+            color: var(--gray-text); flex-shrink: 0;
+            margin-right: 4px;
+        }
+
+        .filter-tags {
+            display: flex; flex-wrap: wrap; gap: 6px;
+        }
+
+        .filter-tag {
+            font-family: var(--font-mono);
+            font-size: 11px; font-weight: 400;
+            letter-spacing: 0.3px;
+            color: var(--gray-text);
+            background: transparent;
+            border: 1px solid var(--gray-mid);
+            border-radius: 50px;
+            padding: 5px 14px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            user-select: none;
+        }
+
+        .filter-tag:hover {
+            border-color: var(--black);
+            color: var(--black);
+        }
+
+        .filter-tag.active {
+            background: var(--black);
+            border-color: var(--black);
+            color: var(--white);
+        }
+
+        .filter-tag.tag-type { }
+
+        /* ── Empty state ── */
+        .empty-state {
+            display: none;
+            padding: 48px 0;
+            text-align: center;
+        }
+
+        .empty-state p {
+            font-family: var(--font-mono);
+            font-size: 12px; letter-spacing: 0.4px;
+            color: var(--gray-text);
+        }
+
+        /* ── Results count ── */
+        .results-bar {
+            max-width: 1200px; margin: 0 auto;
+            padding: 16px 48px 0;
+            display: flex; align-items: center; gap: 16px;
+        }
+
+        .results-count {
+            font-family: var(--font-mono);
+            font-size: 10px; letter-spacing: 0.5px;
+            text-transform: uppercase; color: var(--gray-text);
+            transition: opacity 0.2s ease;
+        }
+
+        .clear-btn {
+            font-family: var(--font-mono);
+            font-size: 10px; letter-spacing: 0.5px;
+            text-transform: uppercase; color: var(--gray-text);
+            background: none; border: none; cursor: pointer;
+            padding: 0; text-decoration: underline;
+            text-underline-offset: 2px;
+            display: none;
+        }
+
+        .clear-btn:hover { color: var(--black); }
+
+        /* ── Main Grid ── */
+        .pub-grid {
+            max-width: 1200px; margin: 0 auto;
+            padding: 0 48px 100px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0 64px;
+            align-items: start;
+        }
+
+        .pub-column { padding-top: 40px; }
+
+        .column-label {
+            font-family: var(--font-mono);
+            font-size: 11px; font-weight: 400;
+            letter-spacing: 0.54px; text-transform: uppercase;
+            color: var(--gray-text);
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--gray-mid);
+            display: flex; align-items: center;
+            justify-content: space-between;
+        }
+
+        .col-count {
+            font-family: var(--font-mono);
+            font-size: 10px; color: var(--gray-text);
+            transition: opacity 0.2s ease;
+        }
+
+        .pub-grid .pub-column:first-child {
+            border-right: 1px solid var(--gray-mid);
+            padding-right: 64px;
+        }
+
+        /* ── Pub Entry ── */
+        .pub-entry {
+            border-bottom: 1px solid var(--gray-mid);
+            padding: 28px 0;
+            display: grid;
+            grid-template-columns: 68px 1fr;
+            gap: 20px;
+            align-items: start;
+            transition: opacity 0.2s ease, max-height 0.25s ease;
+        }
+
+        .pub-entry:last-child { border-bottom: none; }
+
+        .pub-entry.hidden {
+            display: none;
+        }
+
+        .pub-year {
+            font-family: var(--font-mono);
+            font-size: 11px; font-weight: 400;
+            letter-spacing: 0.4px; color: var(--gray-text);
+            line-height: 1.4; padding-top: 3px;
+        }
+
+        .pub-type-badge {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 9px; letter-spacing: 0.5px;
+            text-transform: uppercase; color: var(--gray-text);
+            border: 1px solid var(--gray-mid);
+            border-radius: 50px; padding: 2px 7px;
+            margin-top: 6px; white-space: nowrap;
+        }
+
+        .pub-title {
+            font-size: 15px; font-weight: 500;
+            line-height: 1.35; letter-spacing: -0.14px;
+            color: var(--black); margin-bottom: 4px;
+        }
+
+        .pub-title-zh {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 13px; font-weight: 400;
+            line-height: 1.5; color: #555; margin-bottom: 4px;
+        }
+
+        .pub-lang {
+            font-size: 11px; font-weight: 300;
+            font-style: italic; color: var(--gray-text); margin-bottom: 6px;
+        }
+
+        .pub-coauthor {
+            font-size: 12px; font-weight: 300;
+            color: var(--gray-text); margin-bottom: 6px;
+        }
+
+        .pub-journal {
+            font-size: 13px; font-weight: 300;
+            letter-spacing: -0.1px; color: #555;
+            line-height: 1.45; margin-bottom: 8px;
+        }
+
+        .pub-journal em { font-style: italic; }
+
+        /* Entry keyword tags (display only) */
+        .pub-keywords {
+            display: flex; flex-wrap: wrap; gap: 5px;
+            margin-top: 10px; margin-bottom: 4px;
+        }
+
+        .pub-kw {
+            font-family: var(--font-mono);
+            font-size: 9px; letter-spacing: 0.4px;
+            text-transform: uppercase;
+            color: var(--gray-text);
+            border: 1px solid var(--gray-mid);
+            border-radius: 50px; padding: 2px 9px;
+            cursor: pointer;
+            transition: all 0.12s ease;
+        }
+
+        .pub-kw:hover {
+            border-color: var(--black);
+            color: var(--black);
+        }
+
+        .pub-kw.active-kw {
+            background: var(--black);
+            border-color: var(--black);
+            color: var(--white);
+        }
+
+        /* ── Abstract ── */
+        details { margin-top: 8px; }
+
+        summary {
+            font-family: var(--font-mono);
+            font-size: 10px; letter-spacing: 0.5px;
+            text-transform: uppercase; color: var(--gray-text);
+            cursor: pointer; list-style: none;
+            display: inline-flex; align-items: center; gap: 5px;
+            transition: color 0.15s ease;
+        }
+
+        summary::-webkit-details-marker { display: none; }
+        summary:hover { color: var(--black); }
+        summary::before { content: '+'; font-size: 12px; display: inline-block; }
+        details[open] summary::before { content: '−'; }
+
+        .abstract-text {
+            font-size: 13px; font-weight: 300;
+            line-height: 1.6; letter-spacing: -0.1px;
+            color: #555; margin-top: 12px;
+            padding-left: 12px;
+            border-left: 1.5px solid var(--gray-mid);
+        }
+
+        /* ── Link ── */
+        .pub-link {
+            display: inline-flex; align-items: center; gap: 5px;
+            text-decoration: none; font-size: 12px; font-weight: 400;
+            letter-spacing: -0.1px; color: var(--black);
+            border: 1px solid var(--gray-mid); border-radius: 50px;
+            padding: 4px 12px; margin-top: 8px;
+            transition: border-color 0.15s ease;
+        }
+
+        .pub-link:hover { border-color: var(--black); }
+
+        /* ── Column empty state ── */
+        .col-empty {
+            display: none;
+            padding: 40px 0;
+        }
+
+        .col-empty p {
+            font-family: var(--font-mono);
+            font-size: 11px; letter-spacing: 0.4px;
+            color: var(--gray-text);
+        }
+
+        /* ── Footer ── */
+        footer {
+            border-top: 1px solid var(--gray-mid);
+            padding: 28px 48px;
+            display: flex; align-items: center;
+            justify-content: space-between;
+        }
+
+        footer p {
+            font-family: var(--font-mono);
+            font-size: 11px; letter-spacing: 0.4px;
+            color: var(--gray-text);
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 900px) {
+            .pub-grid { grid-template-columns: 1fr; gap: 0; }
+            .pub-grid .pub-column:first-child {
+                border-right: none;
+                border-bottom: 1px solid var(--gray-mid);
+                padding-right: 0; padding-bottom: 48px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-nav { padding: 0 20px; }
+            .page-header { padding: 60px 24px 48px; flex-direction: column; align-items: flex-start; }
+            .filter-bar { padding: 20px 24px; }
+            .results-bar { padding: 12px 24px 0; }
+            .pub-grid { padding: 0 24px 72px; }
+            footer { padding: 24px; flex-direction: column; gap: 8px; }
+        }
+
+        @media (max-width: 480px) {
+            .page-header h1 { font-size: 36px; letter-spacing: -1px; }
+            .nav-links a { font-size: 13px; padding: 5px 10px; }
+            .pub-entry { grid-template-columns: 56px 1fr; gap: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="top-nav">
+        <a href="index.html" class="nav-logo">Chang Hasheminezhad-Li</a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="publications.html" class="active">Publications</a>
+            <a href="projects.html">Projects</a>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div>
+            <p class="page-header-mono">Publications</p>
+            <h1>Research &amp;<br><em>Writing</em></h1>
+        </div>
+        <a href="https://scholar.google.com/citations?user=0a9_g1cAAAAJ" target="_blank" class="scholar-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Google Scholar
+        </a>
+    </header>
+
+    <!-- Filter Bar -->
+    <div class="filter-bar">
+        <span class="filter-label">Filter</span>
+        <div class="filter-tags" id="filterTags">
+            <!-- Type filters -->
+            <button class="filter-tag tag-type" data-tag="Article">Article</button>
+            <button class="filter-tag tag-type" data-tag="Chapter">Chapter</button>
+            <button class="filter-tag tag-type" data-tag="Manuscript">Manuscript</button>
+            <button class="filter-tag tag-type" data-tag="Conference">Conference</button>
+            <!-- Topic filters -->
+            <button class="filter-tag" data-tag="Children's Literature">Children's Lit</button>
+            <button class="filter-tag" data-tag="Multimodal">Multimodal</button>
+            <button class="filter-tag" data-tag="Climate">Climate</button>
+            <button class="filter-tag" data-tag="Sinology">Sinology</button>
+            <button class="filter-tag" data-tag="Utopia">Utopia</button>
+            <button class="filter-tag" data-tag="Post-Apocalyptic">Post-Apocalyptic</button>
+            <button class="filter-tag" data-tag="Censorship">Censorship</button>
+            <button class="filter-tag" data-tag="Identity">Identity</button>
+        </div>
+    </div>
+
+    <!-- Results bar -->
+    <div class="results-bar">
+        <span class="results-count" id="resultsCount"></span>
+        <button class="clear-btn" id="clearBtn" onclick="clearFilters()">Clear filter</button>
+    </div>
+
+    <!-- Two-column grid -->
+    <div class="pub-grid">
+
+        <!-- Articles & Chapters -->
+        <div class="pub-column" id="colArticles">
+            <p class="column-label">
+                Articles &amp; Chapters
+                <span class="col-count" id="countArticles">05</span>
+            </p>
+
+            <div class="col-empty" id="emptyArticles"><p>No matches in this column.</p></div>
+
+            <div class="pub-entry" data-tags="Article,Climate,Post-Apocalyptic,Children's Literature">
+                <div>
+                    <p class="pub-year">Dec 2025</p>
+                    <span class="pub-type-badge">Article</span>
+                </div>
+                <div>
+                    <p class="pub-title">Post-apocalyptic Narratives for Climate Change Education</p>
+                    <p class="pub-journal">Climate Literacy in Education, Vol. 3, No. 3</p>
+                    <div class="pub-keywords">
+                        <span class="pub-kw" data-kw="Post-Apocalyptic">Post-Apocalyptic</span>
+                        <span class="pub-kw" data-kw="Climate">Climate</span>
+                        <span class="pub-kw" data-kw="Children's Literature">Children's Lit</span>
+                    </div>
+                    <a href="https://pubs.lib.umn.edu/index.php/cle/article/view/7010" target="_blank" class="pub-link">View Article →</a>
+                    <details>
+                        <summary>Abstract</summary>
+                        <div class="abstract-text">
+                            <p>This article examines the challenges of incorporating post-apocalyptic narratives into Climate Change Education (CCE). Drawing on current critiques, I identify three major concerns: the potential to induce learner disempowerment and fatalism, the risk of narrative simplification that weakens critical impact, and the cultural specificity of predominantly Western works.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <div class="pub-entry" data-tags="Chapter,Multimodal,Children's Literature">
+                <div>
+                    <p class="pub-year">Dec 2025</p>
+                    <span class="pub-type-badge">Chapter</span>
+                </div>
+                <div>
+                    <p class="pub-title">BIBI Puzzle Cards e Visual Frames. Visual Literacy e ricostruzioni biografiche in gioco</p>
+                    <p class="pub-coauthor">Co-authored with Marnie Campagnaro</p>
+                    <p class="pub-journal">In <em>BIBI Research Handbook—Biografie e Bioficion d'Infanzia</em>, eds. Marnie Campagnaro &amp; Lea Ferrari, pp. 97–111</p>
+                    <div class="pub-keywords">
+                        <span class="pub-kw" data-kw="Multimodal">Multimodal</span>
+                        <span class="pub-kw" data-kw="Children's Literature">Children's Lit</span>
+                    </div>
+                    <a href="pdfs/BIBI-handbook-2025.pdf" target="_blank" class="pub-link">Download PDF ↓</a>
+                </div>
+            </div>
+
+            <div class="pub-entry" data-tags="Manuscript,Sinology">
+                <div>
+                    <p class="pub-year">2024</p>
+                    <span class="pub-type-badge">Manuscript</span>
+                </div>
+                <div>
+                    <p class="pub-title">The Reception of Qu Yuan's <em>The Lament</em> (Li Sao) in Sino-Korean Literature of the Double Fifth Festival</p>
+                    <p class="pub-title-zh">韓國端午漢文作品與屈騷之關聯研究</p>
+                    <p class="pub-lang">Written in Traditional Chinese</p>
+                    <p class="pub-journal">Manuscript</p>
+                    <div class="pub-keywords">
+                        <span class="pub-kw" data-kw="Sinology">Sinology</span>
+                    </div>
+                    <a href="pdfs/hanguo-2024.pdf" target="_blank" class="pub-link">Download PDF ↓</a>
+                </div>
+            </div>
+
+            <div class="pub-entry" data-tags="Article,Utopia">
+                <div>
+                    <p class="pub-year">Oct 2022</p>
+                    <span class="pub-type-badge">Article</span>
+                </div>
+                <div>
+                    <p class="pub-title">Reshaping the Balance: How Gilman Critiques and Constructs a Feminist Utopia in Herland</p>
+                    <p class="pub-journal">Nesir: Edebiyat Araştırmaları Dergisi 3</p>
+                    <div class="pub-keywords">
+                        <span class="pub-kw" data-kw="Utopia">Utopia</span>
+                    </div>
+                    <a href="https://dergipark.org.tr/en/download/article-file/5051712" target="_blank" class="pub-link">View Article →</a>
+                </div>
+            </div>
+
+            <div class="pub-entry" data-tags="Article,Sinology">
+                <div>
+                    <p class="pub-year">Jun 2020</p>
+                    <span class="pub-type-badge">Article</span>
+                </div>
+                <div>
+                    <p class="pub-title">Kim Si-seup's Complex of Qu Yuan and ChuCi: Centering on the Idea-image and Acceptance from ChuCi</p>
+                    <p class="pub-title-zh">金時習之屈騷情結——以楚辭意象受容爲中心</p>
+                    <p class="pub-lang">Written in Traditional Chinese</p>
+                    <p class="pub-journal">Journal of Chinese and Korean Studies, Vol. 7</p>
+                    <div class="pub-keywords">
+                        <span class="pub-kw" data-kw="Sinology">Sinology</span>
+                    </div>
+                    <a href="pdfs/kim-siseup-2020.pdf" target="_blank" class="pub-link">Download PDF ↓</a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Conference Presentations -->
+        <div class="pub-column" id="colConferences">
+            <p class="column-label">
+                Conference Presentations
+                <span class="col-count" id="countConferences">04</span>
+            </p>
+
+            <div class="col-empty" id="emptyConferences"><p>No matches in this column.</p></div>
+
+            <div class="pub-entry" data-tags="Conference,Identity,Censorship">
+                <div>
+                    <p class="pub-year">Feb 2026</p>
+                    <span class="pub-type-badge">Malta</span>
+                </div>
+                <div>
+                    <p class="pub-title">Am I a Voice or a Traitor? Dialogues with Youth from Aggressor States</p>
+                    <p class="pub-journal">Seen and Heard International Conference, University of Malta</p>
+                    <div class="pub-keywords">
+                        <span class="pub-kw" data-kw="Identity">Identity</span>
+                        <span class="pub-kw" data-kw="Censorship">Censorship</span>
+                    </div>
+                    <a href="https://www.um.edu.mt/events/seenandheardintconf2026/" target="_blank" class="pub-link">Conference Info →</a>
+                    <details>
+                        <summary>Abstract</summary>
+                        <div class="abstract-text">
+                            <p>This qualitative interview study examines 6 migrant youth from Belarus, China, and Russia currently living in Europe, exploring how they navigate identity, belonging, and political complicity from within host countries.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <div class="pub-entry" data-tags="Conference,Children's Literature,Censorship">
+                <div>
+                    <p class="pub-year">Nov 2025</p>
+                    <span class="pub-type-badge">Venice</span>
+                </div>
+                <div>
+                    <p class="pub-title">The Taste of Authoritarian: How Do Food Spaces Function as Sites of Control and Resistance in Picturebooks?</p>
+                    <p class="pub-journal">Eating Indoors and Outdoors in Children's Literature</p>
+                    <div class="pub-keywords">
+                        <span class="pub-kw" data-kw="Children's Literature">Children's Lit</span>
+                        <span class="pub-kw" data-kw="Censorship">Censorship</span>
+                    </div>
+                    <a href="https://www.unive.it/data/33113/5/107894" target="_blank" class="pub-link">Conference Info →</a>
+                </div>
+            </div>
+
+            <div class="pub-entry" data-tags="Conference,Post-Apocalyptic,Climate,Children's Literature">
+                <div>
+                    <p class="pub-year">Aug 2025</p>
+                    <span class="pub-type-badge">South Korea</span>
+                </div>
+                <div>
+                    <p class="pub-title">The Potential of Post-Apocalyptic Young Adult Novels as a Vehicle for Youth Engagement in Ecological Transformation</p>
+                    <p class="pub-journal">2025 IBBY Asia Pacific Regional Conference, Suwon</p>
+                    <div class="pub-keywords">
+                        <span class="pub-kw" data-kw="Post-Apocalyptic">Post-Apocalyptic</span>
+                        <span class="pub-kw" data-kw="Climate">Climate</span>
+                        <span class="pub-kw" data-kw="Children's Literature">Children's Lit</span>
+                    </div>
+                    <details>
+                        <summary>Abstract</summary>
+                        <div class="abstract-text">
+                            <p>The development of the Young Adult novel in terms of the topics it encompasses reached its zenith in the 1970s, exploring how contemporary YA fiction can serve as a catalyst for ecological consciousness and youth activism.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <div class="pub-entry" data-tags="Conference,Censorship,Identity">
+                <div>
+                    <p class="pub-year">Jun 2022</p>
+                    <span class="pub-type-badge">London</span>
+                </div>
+                <div>
+                    <p class="pub-title">The Polarization of the Discourse of the Queer Community in China</p>
+                    <p class="pub-journal">Mind the Gap Conference, London</p>
+                    <div class="pub-keywords">
+                        <span class="pub-kw" data-kw="Censorship">Censorship</span>
+                        <span class="pub-kw" data-kw="Identity">Identity</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Chang Hasheminezhad-Li</p>
+        <p>University of Padova · Doctoral Researcher</p>
+    </footer>
+
+    <script>
+        const activeFilters = new Set();
+
+        const allEntries = document.querySelectorAll('.pub-entry');
+        const filterButtons = document.querySelectorAll('.filter-tag');
+        const clearBtn = document.getElementById('clearBtn');
+        const resultsCount = document.getElementById('resultsCount');
+        const countArticles = document.getElementById('countArticles');
+        const countConferences = document.getElementById('countConferences');
+        const emptyArticles = document.getElementById('emptyArticles');
+        const emptyConferences = document.getElementById('emptyConferences');
+
+        // Clicking a keyword tag on an entry activates that filter
+        document.querySelectorAll('.pub-kw').forEach(kw => {
+            kw.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const tag = kw.dataset.kw;
+                toggleFilter(tag);
+            });
+        });
+
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                toggleFilter(btn.dataset.tag);
+            });
+        });
+
+        function toggleFilter(tag) {
+            if (activeFilters.has(tag)) {
+                activeFilters.delete(tag);
+            } else {
+                activeFilters.add(tag);
+            }
+            applyFilters();
+        }
+
+        function clearFilters() {
+            activeFilters.clear();
+            applyFilters();
+        }
+
+        function applyFilters() {
+            // Sync filter bar button states
+            filterButtons.forEach(btn => {
+                btn.classList.toggle('active', activeFilters.has(btn.dataset.tag));
+            });
+
+            // Sync inline keyword tag states
+            document.querySelectorAll('.pub-kw').forEach(kw => {
+                kw.classList.toggle('active-kw', activeFilters.has(kw.dataset.kw));
+            });
+
+            let visibleArticles = 0;
+            let visibleConferences = 0;
+
+            allEntries.forEach(entry => {
+                const entryTags = entry.dataset.tags.split(',').map(t => t.trim());
+                const isInArticleCol = entry.closest('#colArticles') !== null;
+
+                if (activeFilters.size === 0) {
+                    entry.classList.remove('hidden');
+                    if (isInArticleCol) visibleArticles++;
+                    else visibleConferences++;
+                } else {
+                    const matches = [...activeFilters].every(f => entryTags.includes(f));
+                    entry.classList.toggle('hidden', !matches);
+                    if (matches) {
+                        if (isInArticleCol) visibleArticles++;
+                        else visibleConferences++;
+                    }
+                }
+            });
+
+            // Update counts
+            countArticles.textContent = visibleArticles;
+            countConferences.textContent = visibleConferences;
+
+            // Show/hide column empty states
+            emptyArticles.style.display = visibleArticles === 0 ? 'block' : 'none';
+            emptyConferences.style.display = visibleConferences === 0 ? 'block' : 'none';
+
+            // Results bar
+            const total = visibleArticles + visibleConferences;
+            if (activeFilters.size > 0) {
+                resultsCount.textContent = total + ' result' + (total !== 1 ? 's' : '') + ' for: ' + [...activeFilters].join(' · ');
+                clearBtn.style.display = 'inline';
+            } else {
+                resultsCount.textContent = '';
+                clearBtn.style.display = 'none';
+            }
+        }
+    </script>
+
+</body>
+</html>
