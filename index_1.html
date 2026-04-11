@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chang Hasheminezhad-Li | PhD Researcher</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --black: #000000;
+            --white: #ffffff;
+            --gray-soft: #f7f7f5;
+            --gray-mid: #e8e8e4;
+            --gray-text: #888880;
+            --font-sans: 'Inter', 'SF Pro Display', system-ui, helvetica, sans-serif;
+            --font-mono: 'SF Mono', 'Menlo', monospace;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--white);
+            color: var(--black);
+            font-family: var(--font-sans);
+            font-feature-settings: "kern";
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            line-height: 1.45;
+        }
+
+        /* ── Navigation ── */
+        .top-nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            width: 100%;
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-mid);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 48px;
+            height: 56px;
+        }
+
+        .nav-logo {
+            font-family: var(--font-sans);
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: -0.26px;
+            color: var(--black);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--black);
+            font-size: 15px;
+            font-weight: 400;
+            letter-spacing: -0.14px;
+            padding: 6px 14px;
+            border-radius: 50px;
+            transition: background 0.15s ease;
+        }
+
+        .nav-links a:hover { background: rgba(0,0,0,0.06); }
+
+        .nav-links a.active {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        a:focus-visible, button:focus-visible {
+            outline: 2px dashed var(--black);
+            outline-offset: 3px;
+        }
+
+        /* ── Hero ── */
+        .hero {
+            padding: 120px 48px 100px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .hero-mono-label {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            color: var(--gray-text);
+            margin-bottom: 28px;
+        }
+
+        .hero h1 {
+            font-family: var(--font-sans);
+            font-size: clamp(48px, 7vw, 86px);
+            font-weight: 300;
+            line-height: 1.00;
+            letter-spacing: -2px;
+            color: var(--black);
+            margin-bottom: 32px;
+            max-width: 900px;
+        }
+
+        .hero h1 em {
+            font-style: normal;
+            font-weight: 500;
+        }
+
+        .hero-desc {
+            font-size: 20px;
+            font-weight: 300;
+            line-height: 1.40;
+            letter-spacing: -0.14px;
+            color: #444;
+            max-width: 560px;
+            margin-bottom: 48px;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .btn-black {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 400;
+            letter-spacing: -0.14px;
+            color: var(--white);
+            background: var(--black);
+            border-radius: 50px;
+            padding: 10px 22px;
+            border: 1.5px solid var(--black);
+            transition: opacity 0.15s ease;
+        }
+
+        .btn-black:hover { opacity: 0.78; }
+
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 400;
+            letter-spacing: -0.14px;
+            color: var(--black);
+            background: transparent;
+            border-radius: 50px;
+            padding: 10px 22px;
+            border: 1.5px solid var(--gray-mid);
+            transition: border-color 0.15s ease;
+        }
+
+        .btn-outline:hover { border-color: var(--black); }
+
+        /* ── Divider ── */
+        .section-divider {
+            width: calc(100% - 96px);
+            height: 1px;
+            background: var(--gray-mid);
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* ── About Section ── */
+        .about-section {
+            padding: 100px 48px;
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .section-sidebar {
+            position: sticky;
+            top: 80px;
+        }
+
+        .section-mono-label {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: 0.54px;
+            text-transform: uppercase;
+            color: var(--gray-text);
+            margin-bottom: 16px;
+        }
+
+        .section-sidebar h2 {
+            font-size: 26px;
+            font-weight: 500;
+            line-height: 1.25;
+            letter-spacing: -0.26px;
+            color: var(--black);
+        }
+
+        .bio-text {
+            font-size: 18px;
+            font-weight: 300;
+            line-height: 1.55;
+            letter-spacing: -0.14px;
+            color: #333;
+        }
+
+        .bio-text p { margin-bottom: 20px; }
+        .bio-text p:last-child { margin-bottom: 0; }
+        .bio-text strong { font-weight: 500; color: var(--black); }
+        .bio-text em { font-style: italic; color: var(--black); }
+
+        /* ── Research Section ── */
+        .research-section {
+            background: var(--black);
+            color: var(--white);
+            padding: 100px 48px;
+        }
+
+        .research-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .research-inner .section-mono-label {
+            color: rgba(255,255,255,0.38);
+            margin-bottom: 48px;
+        }
+
+        .research-heading {
+            font-size: clamp(32px, 4.5vw, 64px);
+            font-weight: 300;
+            line-height: 1.10;
+            letter-spacing: -1px;
+            color: var(--white);
+            max-width: 800px;
+            margin-bottom: 64px;
+        }
+
+        .research-card {
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 8px;
+            padding: 40px 48px;
+            max-width: 720px;
+        }
+
+        .research-card-title {
+            font-size: 22px;
+            font-weight: 500;
+            line-height: 1.3;
+            letter-spacing: -0.26px;
+            color: var(--white);
+            margin-bottom: 16px;
+        }
+
+        .research-card-body {
+            font-size: 17px;
+            font-weight: 300;
+            line-height: 1.55;
+            letter-spacing: -0.14px;
+            color: rgba(255,255,255,0.60);
+            margin-bottom: 28px;
+        }
+
+        .research-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            font-weight: 400;
+            letter-spacing: 0.54px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.48);
+            border: 1px solid rgba(255,255,255,0.16);
+            border-radius: 50px;
+            padding: 5px 14px;
+        }
+
+        /* ── Contact Section ── */
+        .contact-section {
+            padding: 100px 48px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .contact-section .section-mono-label {
+            margin-bottom: 40px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            border-top: 1px solid var(--gray-mid);
+        }
+
+        .contact-item {
+            padding: 28px 32px 28px 0;
+            border-bottom: 1px solid var(--gray-mid);
+        }
+
+        .contact-item-label {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            font-weight: 400;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            color: var(--gray-text);
+            margin-bottom: 8px;
+        }
+
+        .contact-item-value {
+            font-size: 15px;
+            font-weight: 400;
+            letter-spacing: -0.14px;
+            color: var(--black);
+            line-height: 1.5;
+        }
+
+        .contact-item-value a {
+            color: var(--black);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-color: var(--gray-mid);
+            transition: text-decoration-color 0.15s ease;
+        }
+
+        .contact-item-value a:hover {
+            text-decoration-color: var(--black);
+        }
+
+        /* ── Footer ── */
+        footer {
+            border-top: 1px solid var(--gray-mid);
+            padding: 28px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        footer p {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: 0.4px;
+            color: var(--gray-text);
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            .top-nav { padding: 0 20px; }
+            .hero { padding: 72px 24px 72px; }
+            .hero h1 { font-size: 44px; letter-spacing: -1.5px; }
+            .about-section { padding: 72px 24px; grid-template-columns: 1fr; gap: 32px; }
+            .section-sidebar { position: static; }
+            .research-section { padding: 72px 24px; }
+            .research-card { padding: 28px 24px; }
+            .contact-section { padding: 72px 24px; }
+            .section-divider { width: calc(100% - 48px); }
+            footer { padding: 24px; flex-direction: column; gap: 8px; }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 36px; letter-spacing: -1px; }
+            .hero-ctas { flex-direction: column; align-items: flex-start; }
+            .nav-links a { font-size: 13px; padding: 5px 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="top-nav">
+        <a href="index.html" class="nav-logo">Chang Hasheminezhad-Li</a>
+        <div class="nav-links">
+            <a href="index.html" class="active">Home</a>
+            <a href="about.html">About</a>
+            <a href="publications.html">Publications</a>
+            <a href="projects.html">Projects</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <p class="hero-mono-label">PhD Researcher · University of Padova</p>
+        <h1>Chang<br><em>Hasheminezhad-Li</em></h1>
+        <p class="hero-desc">Inclusion, well-being, and sustainability in education — through the lens of children's literature and multimodal analysis.</p>
+        <div class="hero-ctas">
+            <a href="publications.html" class="btn-black">Publications</a>
+            <a href="mailto:chang.li@phd.unipd.it" class="btn-outline">chang.li@phd.unipd.it</a>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- About -->
+    <section class="about-section">
+        <div class="section-sidebar">
+            <p class="section-mono-label">About</p>
+            <h2>Researcher,<br>writer,<br>analyst.</h2>
+        </div>
+        <div class="bio-text">
+            <p>I am a doctoral researcher at the <strong>University of Padova</strong>, specializing in children's literature, multimodal analysis, and representations of uncertainty.</p>
+            <p>My current research, <em>"Hope as Cultural Resource: A Multimodal Analysis of Uncertainty Navigation in European Picturebooks (2015–2025),"</em> employs multimodal analysis to explore how uncertainty is navigated in European picturebooks. I work to bridge the gap between literary theory and social impact, focusing on digital censorship and cross-cultural narratives.</p>
+            <p>I also have a strong interest in the relationship between multimodality, children's agency, and censorship.</p>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Research -->
+    <section class="research-section">
+        <div class="research-inner">
+            <p class="section-mono-label">Current Research</p>
+            <h2 class="research-heading">Navigating uncertainty through picturebooks.</h2>
+            <div class="research-card">
+                <p class="research-card-title">Hope as Cultural Resource</p>
+                <p class="research-card-body">A multimodal analysis of how uncertainty is represented and navigated in European picturebooks published between 2015 and 2025 — examining the cultural, literary, and social mechanisms that enable children's resilience and agency.</p>
+                <div class="research-tags">
+                    <span class="tag">Multimodal Analysis</span>
+                    <span class="tag">Children's Literature</span>
+                    <span class="tag">Cultural Studies</span>
+                    <span class="tag">Digital Censorship</span>
+                    <span class="tag">Cross-Cultural Narratives</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact-section">
+        <p class="section-mono-label">Contact</p>
+        <div class="contact-grid">
+            <div class="contact-item">
+                <p class="contact-item-label">Location</p>
+                <p class="contact-item-value">Padova, Italy</p>
+            </div>
+            <div class="contact-item">
+                <p class="contact-item-label">Also based in</p>
+                <p class="contact-item-value">Wrocław, Poland<br>Suzhou, China</p>
+            </div>
+            <div class="contact-item">
+                <p class="contact-item-label">Email</p>
+                <p class="contact-item-value">
+                    <a href="mailto:chang.li@phd.unipd.it">chang.li@phd.unipd.it</a>
+                </p>
+            </div>
+            <div class="contact-item">
+                <p class="contact-item-label">ORCID</p>
+                <p class="contact-item-value">
+                    <a href="https://orcid.org/0000-0003-1976-5727" target="_blank">0000-0003-1976-5727</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Chang Hasheminezhad-Li</p>
+        <p>University of Padova · Doctoral Researcher</p>
+    </footer>
+
+</body>
+</html>
