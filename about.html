@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Chang Hasheminezhad-Li</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --black: #000000;
+            --white: #ffffff;
+            --gray-mid: #e8e8e4;
+            --gray-soft: #f7f7f5;
+            --gray-text: #888880;
+            --font-sans: 'Inter', 'SF Pro Display', system-ui, helvetica, sans-serif;
+            --font-mono: 'SF Mono', 'Menlo', monospace;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--white);
+            color: var(--black);
+            font-family: var(--font-sans);
+            font-feature-settings: "kern";
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            line-height: 1.45;
+        }
+
+        /* ── Navigation ── */
+        .top-nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            width: 100%;
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-mid);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 48px;
+            height: 56px;
+        }
+
+        .nav-logo {
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: -0.26px;
+            color: var(--black);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--black);
+            font-size: 15px;
+            font-weight: 400;
+            letter-spacing: -0.14px;
+            padding: 6px 14px;
+            border-radius: 50px;
+            transition: background 0.15s ease;
+        }
+
+        .nav-links a:hover { background: rgba(0,0,0,0.06); }
+
+        .nav-links a.active {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        a:focus-visible, button:focus-visible {
+            outline: 2px dashed var(--black);
+            outline-offset: 3px;
+        }
+
+        /* ── Page Header ── */
+        .page-header {
+            padding: 80px 48px 64px;
+            max-width: 1100px;
+            margin: 0 auto;
+            border-bottom: 1px solid var(--gray-mid);
+        }
+
+        .page-header-mono {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            color: var(--gray-text);
+            margin-bottom: 24px;
+        }
+
+        .page-header h1 {
+            font-size: clamp(40px, 6vw, 72px);
+            font-weight: 300;
+            line-height: 1.00;
+            letter-spacing: -2px;
+            color: var(--black);
+            max-width: 700px;
+        }
+
+        .page-header h1 em {
+            font-style: normal;
+            font-weight: 500;
+        }
+
+        /* ── Name Note ── */
+        .name-note {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 48px;
+        }
+
+        .name-note-inner {
+            margin-top: 48px;
+            padding: 24px 32px;
+            background: var(--gray-soft);
+            border-left: 2px solid var(--black);
+            border-radius: 0 6px 6px 0;
+        }
+
+        .name-note-inner p {
+            font-size: 15px;
+            font-weight: 300;
+            line-height: 1.6;
+            letter-spacing: -0.14px;
+            color: #444;
+            font-style: italic;
+        }
+
+        .name-note-inner strong {
+            font-weight: 500;
+            color: var(--black);
+            font-style: normal;
+        }
+
+        /* ── Main Content ── */
+        .content-wrap {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 48px;
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        /* ── Timeline Sidebar ── */
+        .timeline-sidebar {
+            padding-top: 72px;
+            position: sticky;
+            top: 80px;
+        }
+
+        .section-mono-label {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: 0.54px;
+            text-transform: uppercase;
+            color: var(--gray-text);
+            margin-bottom: 20px;
+        }
+
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 16px;
+            padding-bottom: 28px;
+            position: relative;
+        }
+
+        .timeline-item:not(:last-child)::before {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 14px;
+            bottom: 0;
+            width: 1px;
+            background: var(--gray-mid);
+        }
+
+        .timeline-dot {
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            border: 1.5px solid var(--black);
+            background: var(--white);
+            flex-shrink: 0;
+            margin-top: 4px;
+        }
+
+        .timeline-item:first-child .timeline-dot {
+            background: var(--black);
+        }
+
+        .timeline-content {}
+
+        .timeline-year {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: var(--gray-text);
+            margin-bottom: 3px;
+        }
+
+        .timeline-place {
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: -0.14px;
+            color: var(--black);
+            line-height: 1.35;
+        }
+
+        .timeline-role {
+            font-size: 12px;
+            font-weight: 300;
+            letter-spacing: -0.1px;
+            color: #777;
+            margin-top: 2px;
+        }
+
+        /* ── Prose Content ── */
+        .prose {
+            padding-top: 64px;
+            padding-bottom: 100px;
+        }
+
+        .prose-section {
+            margin-bottom: 56px;
+        }
+
+        .prose-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .prose p {
+            font-size: 18px;
+            font-weight: 300;
+            line-height: 1.65;
+            letter-spacing: -0.14px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .prose p:last-child { margin-bottom: 0; }
+
+        .prose strong {
+            font-weight: 500;
+            color: var(--black);
+        }
+
+        .prose em {
+            font-style: italic;
+            color: var(--black);
+        }
+
+        .prose a {
+            color: var(--black);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-color: var(--gray-mid);
+            transition: text-decoration-color 0.15s ease;
+        }
+
+        .prose a:hover {
+            text-decoration-color: var(--black);
+        }
+
+        /* ── Figure / Image ── */
+        figure {
+            margin: 40px 0;
+        }
+
+        figure img {
+            width: 100%;
+            max-width: 560px;
+            height: auto;
+            border-radius: 8px;
+            display: block;
+            filter: grayscale(15%);
+            transition: filter 0.3s ease;
+        }
+
+        figure img:hover { filter: grayscale(0%); }
+
+        figcaption {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: 0.4px;
+            color: var(--gray-text);
+            margin-top: 12px;
+        }
+
+        /* ── Section Divider in prose ── */
+        .prose-divider {
+            width: 40px;
+            height: 1.5px;
+            background: var(--black);
+            margin: 44px 0;
+        }
+
+        /* ── Footer ── */
+        footer {
+            border-top: 1px solid var(--gray-mid);
+            padding: 28px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        footer p {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: 0.4px;
+            color: var(--gray-text);
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            .top-nav { padding: 0 20px; }
+            .page-header { padding: 60px 24px 48px; }
+            .name-note { padding: 0 24px; }
+            .content-wrap { padding: 0 24px; grid-template-columns: 1fr; gap: 0; }
+            .timeline-sidebar { position: static; padding-top: 40px; padding-bottom: 8px; }
+            .prose { padding-top: 40px; padding-bottom: 72px; }
+            footer { padding: 24px; flex-direction: column; gap: 8px; }
+        }
+
+        @media (max-width: 480px) {
+            .page-header h1 { font-size: 36px; letter-spacing: -1px; }
+            .nav-links a { font-size: 13px; padding: 5px 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="top-nav">
+        <a href="index.html" class="nav-logo">Chang Hasheminezhad-Li</a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html" class="active">About</a>
+            <a href="publications.html">Publications</a>
+            <a href="projects.html">Projects</a>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <p class="page-header-mono">About</p>
+        <h1>My<br><em>Journey</em></h1>
+    </header>
+
+    <!-- Name Note -->
+    <div class="name-note">
+        <div class="name-note-inner">
+            <p>You can call me <strong>Chang Hasheminezhad-Li</strong>, or simply <strong>Chang Li</strong>. The former is my name after marriage, but I am technically still in the process of legalization. You know, the wheels of bureaucracy turn slowly.</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content-wrap">
+
+        <!-- Sidebar Timeline -->
+        <aside class="timeline-sidebar">
+            <p class="section-mono-label">Timeline</p>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <p class="timeline-year">2023 – Present</p>
+                        <p class="timeline-place">University of Padova</p>
+                        <p class="timeline-role">PhD Researcher</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <p class="timeline-year">2021 – 2023</p>
+                        <p class="timeline-place">Erasmus Mundus CLMC</p>
+                        <p class="timeline-role">Scotland · Denmark · Poland</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <p class="timeline-year">2019 – 2021</p>
+                        <p class="timeline-place">University of Glasgow</p>
+                        <p class="timeline-role">MSc Fantasy Literature</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <p class="timeline-year">–2019</p>
+                        <p class="timeline-place">Suzhou, China</p>
+                        <p class="timeline-role">BA Asian Language & Literature</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Prose -->
+        <main class="prose">
+
+            <div class="prose-section">
+                <p>
+                    I was born in the final year of the last century in <a href="https://en.wikipedia.org/wiki/Suzhou" target="_blank">Suzhou</a>, China — a place often romanticized as the "Venice of the East." As a member of the final generation born under the <strong><a href="https://en.wikipedia.org/wiki/One-child_policy" target="_blank">One-child policy</a></strong>, I carry a distinct perspective on family dynamics. This socio-political backdrop means I grew up without the intrinsic concepts of "sharing" or "sibling cooperation" that dominate many childhood narratives. This unique upbringing has profoundly influenced my critical lens and emotional reception of children's literature, allowing me to question structures of agency and collectivism from an outsider's perspective.
+                </p>
+                <p>
+                    I have always been drawn to literature. My friends and parents often teased me, saying I failed to meet the stereotype of the "Asian student" because I was utterly hopeless at science. I still vividly remember high school: while I could effortlessly score above 90 in Politics and History, my record in Chemistry was a triumphant 23 out of 100.
+                </p>
+            </div>
+
+            <figure>
+                <img src="image/photo1.jpg" alt="Early days in Suzhou" onerror="this.style.display='none'">
+                <figcaption>A snapshot from the early days (before I knew about Chemistry scores).</figcaption>
+            </figure>
+
+            <div class="prose-divider"></div>
+
+            <div class="prose-section">
+                <p>
+                    During my undergraduate studies, I chose <strong>Asian Language and Literature</strong> as my major, focusing primarily on the intersection of Korean literature and Sinology. I was particularly fascinated by the reception of <a href="https://en.wikipedia.org/wiki/Chu_Ci" target="_blank"><em>Chu Ci</em> (The Songs of Chu)</a> in the Korean Peninsula, especially during the Joseon Dynasty. It is a captivating anthology of romantic and fantastic imagination, filled with shamans and spirits.
+                </p>
+                <p>
+                    Following that, I moved to Glasgow to pursue a Master's in <a href="https://fantasy.glasgow.ac.uk/" target="_blank">Fantasy Literature</a>. At the time, I focused on the concept of <em>Xianxia</em> in Chinese fantasy and how it differs ontologically from "Magic" in European traditions. Gradually, my interest shifted towards world-building in High Fantasy, particularly in Young Adult literature.
+                </p>
+            </div>
+
+            <figure>
+                <img src="image/photo2.jpg" alt="University days in Glasgow" onerror="this.style.display='none'">
+                <figcaption>Exploring the fantastic worlds in Glasgow.</figcaption>
+            </figure>
+
+            <div class="prose-divider"></div>
+
+            <div class="prose-section">
+                <p>
+                    After graduation, I joined the Erasmus Mundus programme <a href="https://www.gla.ac.uk/postgraduate/erasmusmundus/clmc/" target="_blank">CLMC (Children's Literature, Media and Culture)</a>. This journey allowed me to bounce between Scotland, Denmark, and Poland. It was an exhausting and anxious time — visas are a perpetual headache for a non-EU citizen. However, amidst the chaos, I developed a deeper interest in post-apocalyptic narratives. My thesis explored the construction of post-apocalyptic worlds in <em>The Hunger Games</em> and other contemporary works.
+                </p>
+            </div>
+
+            <figure>
+                <img src="image/photo3.jpg" alt="Erasmus journey" onerror="this.style.display='none'">
+                <figcaption>Moments from the road between Scotland, Denmark, and Poland.</figcaption>
+            </figure>
+
+            <div class="prose-divider"></div>
+
+            <div class="prose-section">
+                <p>
+                    While studying in Poland, I met my wife, Ms. Sofia. I had originally planned to stay in Poland, but luck intervened, and I received an offer to move to the <strong>University of Padova</strong> to pursue my doctoral research under the supervision of <a href="https://www.unipd.it/en/contatti/rubrica/?detail=Y&ruolo=1&checkout=cerca&persona=CAMPAGNARO&key=4075EDA7D2B64BB3B05541FD3977A7BE" target="_blank">Prof. Marnie Campagnaro</a>.
+                </p>
+                <p>
+                    Now, I am here in Padova, taking it one day at a time, exploring the multimodal ways in which we navigate the uncertainties of our world.
+                </p>
+            </div>
+
+        </main>
+    </div>
+
+    <footer>
+        <p>© 2025 Chang Hasheminezhad-Li</p>
+        <p>University of Padova · Doctoral Researcher</p>
+    </footer>
+
+</body>
+</html>
